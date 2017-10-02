@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Demo Retina logo</title>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="logo">
+				<a href="#" rel="home" class="main-logo">
+					<img src="images/logo.png" width="135" height="27" data-retina="images/logo@2x.png" data-width="135" dât-height="27" />
+				</a>
+			</div> <!-- #logo -->
+		</div>
+		<!-- #container -->
+		
+		<!--
+        	Author：info.lathanh@gmail.com
+        	Time：2017-10-02
+        	description： viết jQuery cho logo
+        -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// kiểm tra màn hình nếu là retina thì là true và ngược lại là false
+				var retina = window.devicePixelRatio > 1 ? true : false;
+				
+				// test 
+				if (retina) {
+		           	console.log("is retina");
+		        } else {
+		           	console.log("is not retina");
+		        }
+		        
+				// Get img
+				var $logo = $( '#logo img' );
+				
+				//console.log($logo);
+				
+				// Lấy data-retina 
+				$retina_logo = $logo.data( 'retina' );
+				
+				//console.log($retina_logo);
+				
+				// Nếu retina và retinalogo thì đổi attr của logo thành logo@2x trong data-retina                
+                if ( retina && $retina_logo ) {
+                	$logo.attr({
+                		src: $logo.data('retina'),
+                    	width: $logo.data('width'),
+                    	height: $logo.data('height')
+                	});
+                	
+                	console.log('Đã đổi thành công hình logo.png thành hình logo@2x.png');
+                }
+
+			});
+		</script>
+		
+		
+		<!--
+        	Author：info.lathanh@gmail.com
+        	Time：2017-10-02
+        	description： viết css cho logo
+        -->
+		<style type="text/css">
+			#container { width: 500px; margin: 0 auto; }
+			
+			body { background-color: #333; color: #fff; text-align: center; }
+		</style>
+	</body>
+</html>
